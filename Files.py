@@ -43,14 +43,17 @@ fileName = "testFile.txt"
 
 def write():
     message = input("Enter the string: ")
-    with open(fileName,"a") as file:
+    with open(fileName,"w") as file:
         file.write(message + "\n")
 
 def read():
-    with open(fileName, "r") as file:
-        for text in file:
-            print(text, end = "")
-    print()
+    try:
+        with open(fileName, "r") as file:
+            for text in file:
+                print(text, end = "")
+        print()
+    except FileNotFoundError as ex:
+        print("Attention: ", ex)
 
 while(True):
     selection = int(input("1. Write to file\t\t2. Reading a file\t\t3. Exit\nSelect action: "))
